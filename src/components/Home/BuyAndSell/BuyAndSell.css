@@ -1,0 +1,25 @@
+.buy_and_sell {
+  background-color: #181818;
+  color: #fff;
+}
+
+.card_content>p {
+  font-size: 16px;
+  color: #e2e2e2;
+}
+
+.card_content h5 {
+  font-size: 18px;
+}
+
+.card_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.card_item h5 {
+  font-size: 16px;
+}

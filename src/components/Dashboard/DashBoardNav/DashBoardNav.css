@@ -1,0 +1,47 @@
+.dashboard_nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  box-shadow: 1px 1px 3px rgb(0 0 0 / 10%);
+  background-color: #1d1ba8;
+  transition: all .6s cubic-bezier(.945, .02, .27, .665);
+  margin: 20px 20px 20px 270px;
+  border-radius: 10px;
+}
+
+.dashboard_nav.active {
+  margin-left: 20px;
+}
+
+.humberger_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 40px;
+  background-color: #8068ea21;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.humberger_icon>i {
+  font-size: 25px;
+  color: #ffffffdc;
+}
+
+.dashboard_item {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 250px;
+  margin-left: 250px;
+  transition: all .6s cubic-bezier(.945, .02, .27, .665);
+
+}
+
+.dashboard_item.active {
+  margin-left: 0;
+}
