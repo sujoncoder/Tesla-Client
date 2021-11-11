@@ -11,7 +11,7 @@
   margin-bottom: 15px;
   border-radius: 5px;
   background-color: var(--dark-color-light);
-  color: #ffffffb4;
+  color: #ffffff;
   transition: all 0.3s ease-in-out;
 }
 
@@ -30,7 +30,7 @@
   border: none;
   border-radius: 5px;
   background-color: var(--dark-color-light);
-  color: #ffffffb4;
+  color: #ffffff;
   padding: 10px;
 }
 
@@ -47,4 +47,22 @@
   width: 100%;
   max-width: 700px;
 
+}
+
+/* #car-upload-photo{} */
+#car-upload-photo {
+  line-height: 35px;
+}
+
+#car-upload-photo::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+#car-upload-photo::before {
+  content: "Upload Photo";
+  display: inline-block;
+  background: var(--dark-color-light);
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
 }

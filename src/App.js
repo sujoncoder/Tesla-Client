@@ -5,14 +5,48 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
 import Login from "./components/Login/Login";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
 import AboutUs from "./components/AboutUs/AboutUs";
 import CarListing from "./pages/CarListing";
 import NotFound from "./components/NotFound/NotFound";
+import useAuth from "./hook/useAuth";
 
 function App() {
+  const { firebaseContext } = useAuth();
+  const { isLoading } = firebaseContext;
   return (
     <>
+      <div
+        className={isLoading ? "spinner_container active" : "spinner_container"}
+      >
+        <div className="spinner_wrapper">
+          <svg viewBox="0 0 100 100">
+            <defs>
+              <filter id="shadow">
+                <feDropShadow
+                  dx="0"
+                  dy="0"
+                  stdDeviation="1.5"
+                  flood-color="#fc6767"
+                />
+              </filter>
+            </defs>
+            <circle
+              id="spinner"
+              style={{
+                fill: "transparent",
+                stroke: "var(--main-color)",
+                strokeWidth: "7px",
+                strokeLinecap: "round",
+                filter: "url(#shadow)",
+              }}
+              cx="50"
+              cy="50"
+              r="45"
+            />
+          </svg>
+        </div>
+      </div>
       <Toaster position="bottom-right" reverseOrder={false} />
       <Switch>
         <Route exact path="/">

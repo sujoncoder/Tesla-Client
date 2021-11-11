@@ -10,6 +10,9 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializationfirebase from "../firebase/firebase.init";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import useAuth from "./useAuth";
 
 initializationfirebase();
 
@@ -20,6 +23,8 @@ const useFirebase = () => {
   const [user, setUser] = useState([]);
   const [error, setError] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoad, setIsLoad] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const auth = getAuth();
 
@@ -47,7 +52,7 @@ const useFirebase = () => {
     setUserRegistration({ ...userRegistration, [name]: value });
   };
 
-  const signUpWithEmailAndPass = (handleCallBack) => {
+  const signUpWithEmailAndPass = (handleCallBack, handleUser) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(
       auth,
@@ -62,6 +67,11 @@ const useFirebase = () => {
           photoURL: userRegistration.imageUrl,
         })
           .then(() => {
+            const userData = {
+              name: user.displayName,
+              email: user.email,
+            };
+            handleUser(userData);
             clearInputForm();
             handleCallBack();
           })
@@ -71,12 +81,14 @@ const useFirebase = () => {
       })
       .catch((error) => {
         setError(error.message);
+        toast.error("User Already exist");
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
-  const signInWithEmailAndPass = (handleCallBack) => {
+  const signInWithEmailAndPass = (handleCallBack, handleUser) => {
+    console.log(userRegistration);
     setIsLoading(true);
     signInWithEmailAndPassword(
       auth,
@@ -84,9 +96,15 @@ const useFirebase = () => {
       userRegistration.password
     )
       .then((userCredential) => {
+        console.log("Hello");
         const user = userCredential.user;
         setUser(user);
         clearInputForm();
+        const userData = {
+          name: user.displayName,
+          email: user.email,
+        };
+        handleUser(userData);
         handleCallBack();
       })
       .catch((error) => {
@@ -97,11 +115,16 @@ const useFirebase = () => {
       });
   };
 
-  const signInWithGoogle = (handleCallBack) => {
+  const signInWithGoogle = (handleCallBack, handleUser) => {
     setIsLoading(true);
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         setUser(result.user);
+        const user = {
+          name: result.user.displayName,
+          email: result.user.email,
+        };
+        handleUser(user);
         handleCallBack();
       })
       .catch((error) => {
@@ -111,11 +134,16 @@ const useFirebase = () => {
         setIsLoading(false);
       });
   };
-  const signInWithGithub = (handleCallBack) => {
+  const signInWithGithub = (handleCallBack, handleUser) => {
     setIsLoading(true);
     signInWithPopup(auth, githubProvider)
       .then((result) => {
         setUser(result.user);
+        const user = {
+          name: result.user.displayName,
+          email: result.user.email,
+        };
+        handleUser(user);
         handleCallBack();
       })
       .catch((error) => {
@@ -150,9 +178,21 @@ const useFirebase = () => {
       });
   };
 
+  useEffect(() => {
+    setIsLoad(true);
+    const url = `http://localhost:5000/users/${user.email}`;
+    axios.get(url).then((res) => {
+      setIsAdmin(res.data?.admin);
+      setIsLoad(false);
+    });
+  }, [user.email]);
+
   return {
+    error,
     user,
+    isAdmin,
     logOut,
+    isLoad,
     isLoading,
     signInWithGoogle,
     signInWithGithub,

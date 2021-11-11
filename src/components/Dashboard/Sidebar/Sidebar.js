@@ -1,14 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import useAuth from "../../../hook/useAuth";
 import { toast } from "react-hot-toast";
 import "./Sidebar.css";
+import axios from "axios";
 
 const Sidebar = () => {
-  const [isAdmin, setIsAdmin] = useState(true);
   let { path, url } = useRouteMatch();
   const { firebaseContext } = useAuth();
-  const { logOut } = firebaseContext;
+  const { logOut, isAdmin } = firebaseContext;
+
+  useEffect(() => {
+    const url = "http://localhost:5000/users";
+    axios.get(url);
+  }, []);
 
   const handleLogOut = () => {
     const hanldefun = () => {};

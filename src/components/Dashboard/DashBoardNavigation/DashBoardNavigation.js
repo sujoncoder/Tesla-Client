@@ -1,10 +1,12 @@
 import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
 import useAuth from "../../../hook/useAuth";
+import AdminRoute from "../../Login/AdminRoute/AdminRoute";
 import AddAProduct from "../AddAProduct/AddAProduct";
 import Admin from "../Admin/Admin";
 import ManageAllOrder from "../ManageAllOrder/ManageAllOrder";
 import ManageProduts from "../ManageProducts/ManageProduts";
 import MyOrder from "../MyOrder/MyOrder";
+import ProductEdit from "../ProductEdit/ProductEdit";
 import Profile from "../Profile/Profile";
 import Review from "../Review/Review";
 import "./DashBoardNavigation.css";
@@ -23,18 +25,18 @@ const DashBoardContent = () => {
         <Route path={`${path}/my-profile`}>
           <Profile></Profile>
         </Route>
-        <Route path={`${path}/manage-all-orders`}>
+        <AdminRoute path={`${path}/manage-all-orders`}>
           <ManageAllOrder />
-        </Route>
-        <Route path={`${path}/add-a-product`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/add-a-product`}>
           <AddAProduct />
-        </Route>
-        <Route path={`${path}/admin`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/admin`}>
           <Admin />
-        </Route>
-        <Route path={`${path}/manage-products`}>
+        </AdminRoute>
+        <AdminRoute path={`${path}/manage-products`}>
           <ManageProduts />
-        </Route>
+        </AdminRoute>
         <Route path={`${path}/my-order`}>
           <MyOrder />
         </Route>
@@ -44,6 +46,9 @@ const DashBoardContent = () => {
         <Route path={`${path}/review`}>
           <Review />
         </Route>
+        <AdminRoute path={`${path}/product-edit/:id`}>
+          <ProductEdit />
+        </AdminRoute>
       </Switch>
     </div>
   );

@@ -59,3 +59,57 @@ body {
   border-color: #fff;
   background-color: #fff;
 }
+
+/* spinner */
+.spinner_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--dark-color-light);
+  z-index: 9999;
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner_container.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.spinner_wrapper {
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes animation {
+  0% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -105;
+  }
+
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+
+  100% {
+    stroke-dasharray: 1 98;
+    stroke-dashoffset: -300;
+  }
+}
+
+#spinner {
+  transform-origin: center;
+  animation-name: animation;
+  animation-duration: 1.2s;
+  animation-timing-function: cubic-bezier;
+  animation-iteration-count: infinite;
+}

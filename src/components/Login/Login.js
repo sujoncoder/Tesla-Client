@@ -6,6 +6,7 @@ import unloack from "../../assests/images/undraw_unlock_-24-mb.svg";
 import useAuth from "../../hook/useAuth";
 import { toast } from "react-hot-toast";
 import "./Login.css";
+import axios from "axios";
 
 const SignUp = ({ signUp }) => {
   const { firebaseContext } = useAuth();
@@ -30,19 +31,32 @@ const SignUp = ({ signUp }) => {
     history.push(redirect_uri);
     toast.success("Successfully SignUp!");
   };
+
+  const handleUser = ({ email, name }) => {
+    const url = "http://localhost:5000/users";
+    axios
+      .put(url, {
+        email: email,
+        name: name,
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+
   const handleGoogleSignIn = () => {
-    signInWithGoogle(handleLoginCallBack);
+    signInWithGoogle(handleLoginCallBack, handleUser);
   };
   const handleGithubSignIn = () => {
-    signInWithGithub(handleLoginCallBack);
+    signInWithGithub(handleLoginCallBack, handleUser);
   };
 
   const handleEmailAndPassSignUp = () => {
-    signUpWithEmailAndPass(handleSignUpCallBack);
+    signUpWithEmailAndPass(handleSignUpCallBack, handleUser);
   };
 
   const handleEmailAndPassSignIn = () => {
-    signInWithEmailAndPass(handleLoginCallBack);
+    signInWithEmailAndPass(handleLoginCallBack, handleUser);
   };
 
   return (

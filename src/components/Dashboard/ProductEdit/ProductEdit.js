@@ -1,10 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useHistory, useParams } from "react-router";
 import ProductForm from "../ProductForm/ProductForm";
-import { toast } from "react-hot-toast";
-import "./AddAProduct.css";
 
-const AddAProduct = () => {
+const ProductEdit = () => {
   const [carData, setCarData] = useState({
     title: "",
     fuel: "Petrol",
@@ -14,6 +14,9 @@ const AddAProduct = () => {
     image: "",
     desc: "",
   });
+
+  const params = useParams();
+  const history = useHistory();
 
   const clearForm = () => {
     setCarData({
@@ -33,12 +36,26 @@ const AddAProduct = () => {
     setCarData({ ...carData, [name]: value });
   };
 
+  useEffect(() => {
+    const id = params.id;
+    const url = `http://localhost:5000/cars/${id}`;
+    axios.get(url).then((res) => {
+      if (res.data._id) {
+        setCarData(res.data);
+      } else {
+        toast.error(res.data.message);
+      }
+    });
+  }, []);
+
   const handleAddProduct = (e) => {
-    const url = `http://localhost:5000/cars`;
-    axios.post(url, carData).then((res) => {
+    const id = params.id;
+    const url = `http://localhost:5000/cars/${id}`;
+    axios.put(url, carData).then((res) => {
       if (res.data.acknowledged) {
-        toast.success("Successfully Car Added!");
+        toast.success("Product Edit Successfully!");
         clearForm();
+        history.push("/dashboard/manage-products");
       } else {
         toast.error(res.data.message);
       }
@@ -48,9 +65,9 @@ const AddAProduct = () => {
 
   return (
     <ProductForm
-      data={{ carData, handleInput, handleAddProduct, edit: false }}
+      data={{ carData, handleInput, handleAddProduct, edit: true }}
     ></ProductForm>
   );
 };
 
-export default AddAProduct;
+export default ProductEdit;

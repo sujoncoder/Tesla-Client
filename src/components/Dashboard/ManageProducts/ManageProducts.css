@@ -1,7 +1,31 @@
 .table_wrapper {
   display: grid;
   justify-content: center;
+  overflow-x: auto;
 }
+
+.table_wrapper::-webkit-scrollbar {
+  height: 5px;
+}
+
+.table_wrapper::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.table_wrapper::-webkit-scrollbar-track:hover {
+  background: #ffffff;
+}
+
+.table_wrapper::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+  border-radius: 10px;
+}
+
+.table_wrapper::-webkit-scrollbar-thumb:hover {
+  background: #ff5959;
+}
+
 
 table {
   border-collapse: collapse;
