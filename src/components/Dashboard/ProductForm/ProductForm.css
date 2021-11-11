@@ -1,0 +1,50 @@
+.input_item {
+  display: flex;
+  flex-direction: column;
+}
+
+.input_item>select,
+.input_item>input {
+  height: 40px;
+  outline: none;
+  border: none;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: var(--dark-color-light);
+  color: #ffffffb4;
+  transition: all 0.3s ease-in-out;
+}
+
+.input_item>select:focus,
+.input_item>input:focus,
+.input_item>textarea:focus {
+  box-shadow: 0px 0px 0px 3px rgb(250, 51, 101);
+}
+
+.input_item>input::placeholder {
+  color: #ffffffb4;
+}
+
+.input_item>textarea {
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--dark-color-light);
+  color: #ffffffb4;
+  padding: 10px;
+}
+
+.input_item>label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.input_item>input {
+  padding: 0 10px;
+}
+
+.add_product_form {
+  width: 100%;
+  max-width: 700px;
+
+}

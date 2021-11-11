@@ -1,13 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
-import Card from "../Card/Card";
-import "./BuyAndSell.css";
+import Card from "../Home/Card/Card";
 
-const BuyAndSell = () => {
+const CarListing = () => {
   const [cars, setCars] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:5000/carshome").then((res) => {
+    axios.get("http://localhost:5000/cars").then((res) => {
       setCars(res.data);
     });
   }, []);
@@ -37,4 +36,4 @@ const BuyAndSell = () => {
   );
 };
 
-export default BuyAndSell;
+export default CarListing;

@@ -1,0 +1,40 @@
+.review_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20px;
+  text-align: center;
+}
+
+.review_card>img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.review_card .fa {
+  font-size: 20px;
+}
+
+.review_card .rating {
+  margin: 10px 0;
+}
+
+.swiper {
+  overflow: visible;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: -26px;
+}
+
+.swiper-pagination-bullet {
+  background: var(--main-color);
+}
+
+.review_container {
+  overflow: hidden;
+}

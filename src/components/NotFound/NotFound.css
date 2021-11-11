@@ -1,0 +1,25 @@
+.not_found {
+  background-color: var(--dark-color);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.not_found h2 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.not_found p {
+  font-size: 14px;
+  color: #ddd;
+}
+
+.not_found a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--main-color);
+  text-decoration: none;
+}

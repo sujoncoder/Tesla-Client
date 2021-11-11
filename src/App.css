@@ -1,6 +1,8 @@
 :root {
-  --main-color: #1352ff;
-  --dark-color: #030324;
+  --main-color: #fa3263;
+  --main-color-light: #fa4a76;
+  --dark-color: #171717;
+  --dark-color-light: #222222;
 }
 
 * {
@@ -45,10 +47,15 @@ body {
   border: 2px solid #fff;
 }
 
-.btn_round:hover,
-.btn_round_outline:hover {
+.btn_round:hover {
   color: #ffffffe8;
-  background-color: #0042f7;
-  box-shadow: rgba(38, 23, 247, 0.589) 0px 4px 12px;
-  border-color: #0042f7;
+  background-color: var(--main-color-light);
+  box-shadow: rgba(250, 76, 119, 0.205) 0px 4px 12px;
+  border-color: var(--main-color-light);
+}
+
+.btn_round_outline:hover {
+  color: var(--main-color);
+  border-color: #fff;
+  background-color: #fff;
 }

@@ -1,3 +1,4 @@
+import DashBoardNavigation from "../../components/Dashboard/DashBoardNavigation/DashBoardNavigation";
 import DashBoardNav from "../../components/Dashboard/DashBoardNav/DashBoardNav";
 import Sidebar from "../../components/Dashboard/Sidebar/Sidebar";
 import useAuth from "../../hook/useAuth";
@@ -15,6 +16,7 @@ const Dashboard = () => {
         </aside>
         <div className="dashboard_wrapper">
           <DashBoardNav />
+          <DashBoardNavigation />
         </div>
       </div>
     </>

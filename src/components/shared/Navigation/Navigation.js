@@ -1,18 +1,41 @@
 import { useState } from "react";
 import { Container } from "react-bootstrap";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import useAuth from "../../../hook/useAuth";
+import { toast } from "react-hot-toast";
 import "./Navigation.css";
 
 const Navigation = () => {
   const [toggleBtn, setToggleBtn] = useState(false);
   const [toggleHamburger, setToggleHamburger] = useState(true);
 
+  const { firebaseContext } = useAuth();
+  const { user, logOut } = firebaseContext;
+
+  const handleLogOut = () => {
+    const handleToast = (isTrue) => {
+      isTrue
+        ? toast.success("Successfully Log Out!")
+        : toast.error("Log Out Error.");
+    };
+    logOut(handleToast);
+  };
+
   return (
     <div className="navbar">
       <Container>
         <div className="navbar_container">
           <div className="nav_logo">
-            <h3>SORUM</h3>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+              }}
+            >
+              <h3>
+                Racy<span>Car</span>
+              </h3>
+            </Link>
           </div>
           <div
             className="humberger_nav_icon"
@@ -49,7 +72,7 @@ const Navigation = () => {
               <NavLink
                 activeClassName="active"
                 className="nav_link"
-                to="/contact-us"
+                to="/car-listing"
               >
                 Car Listing
               </NavLink>
@@ -67,7 +90,7 @@ const Navigation = () => {
               <NavLink
                 activeClassName="active"
                 className="nav_link dashboard_btn_link"
-                to="/contact-us"
+                to="/dashboard"
               >
                 Dashboard
               </NavLink>
@@ -84,38 +107,56 @@ const Navigation = () => {
             >
               Dashboard
             </NavLink>
-            <NavLink
-              activeClassName="link_active"
-              to="/sign-up"
-              style={{
-                marginLeft: 10,
-              }}
-              className="sign_up"
-            >
-              Sign Up <i className="fas fa-arrow-right"></i>
-            </NavLink>
-            {/* <div className={toggleBtn ? "drop_down active" : "drop_down"}>
-              <div className="drop_down_icon">
-                <img
-                  onClick={() => setToggleBtn(!toggleBtn)}
-                  // src={user.photoURL}
-                  alt=""
-                />
-              </div>
-              <div
-                className={
-                  toggleBtn ? "drop_down_menu active" : "drop_down_menu"
-                }
+            {!user?.email && (
+              <NavLink
+                activeClassName="link_active"
+                to="/sign-up"
+                style={{
+                  marginLeft: 10,
+                }}
+                className="sign_up"
               >
-                <small>Welcome:~</small>
-                <button
-                  // onClick={() => handleLogOut()}
-                  className="log_out btn-custom"
+                Sign Up <i className="fas fa-arrow-right"></i>
+              </NavLink>
+            )}
+            {user?.email && (
+              <>
+                <Link
+                  style={{ whiteSpace: "nowrap" }}
+                  className="view_profile_link"
+                  to="/dashboard/my-profile"
                 >
-                  Log Out
-                </button>
-              </div>
-            </div> */}
+                  View Profile<i className="fas fa-arrow-right"></i>
+                </Link>
+                <div className={toggleBtn ? "drop_down active" : "drop_down"}>
+                  <div className="drop_down_icon">
+                    <img
+                      onClick={() => setToggleBtn(!toggleBtn)}
+                      src={user.photoURL}
+                      alt=""
+                    />
+                  </div>
+                  <div
+                    className={
+                      toggleBtn ? "drop_down_menu active" : "drop_down_menu"
+                    }
+                  >
+                    <small>Welcome:~</small>
+                    <p>{user.displayName}</p>
+                    <button
+                      onClick={() => handleLogOut()}
+                      className="btn_round_outline"
+                      style={{
+                        minHeight: "35px",
+                        width: "100px",
+                      }}
+                    >
+                      Log Out
+                    </button>
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </Container>

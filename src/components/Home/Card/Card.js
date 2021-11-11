@@ -49,6 +49,7 @@ const Card = ({ data }) => {
           </div>
           <p>{desc}</p>
           <Link
+            to="/"
             className="btn_round"
             style={{
               minHeight: "40px",

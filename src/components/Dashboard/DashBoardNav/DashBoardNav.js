@@ -1,5 +1,6 @@
 import { useState } from "react";
-import swal from "sweetalert";
+// import swal from "sweetalert";
+import { toast } from "react-hot-toast";
 import useAuth from "../../../hook/useAuth";
 import "./DashBoardNav.css";
 
@@ -9,20 +10,12 @@ const DashBoardNav = () => {
   const { user, logOut } = firebaseContext;
 
   const handleLogOut = () => {
-    swal({
-      title: "Are you sure?",
-      text: "Once logged out you will not be able to access all the services on this website",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((logout) => {
-      if (logout) {
-        logOut();
-        swal("Successfully Log Out", {
-          icon: "success",
-        });
-      }
-    });
+    const handleToast = (isTrue) => {
+      isTrue
+        ? toast.success("Successfully Log Out!")
+        : toast.error("Log Out Error.");
+    };
+    logOut(handleToast);
   };
 
   return (
@@ -45,7 +38,11 @@ const DashBoardNav = () => {
         <div className={toggleBtn ? "drop_down_menu active" : "drop_down_menu"}>
           <small>Welcome:~</small>
           <p>{user.displayName}</p>
-          <button onClick={() => handleLogOut()} className="log_out btn-custom">
+          <button
+            onClick={() => handleLogOut()}
+            className="btn_round_outline"
+            style={{ minHeight: "35px", maxWidth: "100px" }}
+          >
             Log Out
           </button>
         </div>

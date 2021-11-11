@@ -1,5 +1,5 @@
-import { Switch } from "react-router";
 import BuyAndSell from "../components/Home/BuyAndSell/BuyAndSell";
+import Review from "../components/Home/Review/Review";
 import Navigation from "../components/shared/Navigation/Navigation";
 
 const Home = () => {
@@ -7,6 +7,7 @@ const Home = () => {
     <>
       <Navigation></Navigation>
       <BuyAndSell></BuyAndSell>
+      <Review />
     </>
   );
 };

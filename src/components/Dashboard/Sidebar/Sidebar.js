@@ -1,18 +1,32 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useRouteMatch } from "react-router-dom";
+import useAuth from "../../../hook/useAuth";
+import { toast } from "react-hot-toast";
 import "./Sidebar.css";
 
 const Sidebar = () => {
   const [isAdmin, setIsAdmin] = useState(true);
+  let { path, url } = useRouteMatch();
+  const { firebaseContext } = useAuth();
+  const { logOut } = firebaseContext;
+
+  const handleLogOut = () => {
+    const hanldefun = () => {};
+    toast.success("Successfully Log Out!");
+    logOut(hanldefun);
+  };
+
   return (
     <>
       <div>
         <div className="sidebar_logo">
-          <h4>Sorum</h4>
+          <h3>
+            Racy<span>Car</span>
+          </h3>
         </div>
         <ul className="sidebar_menu my-4">
           <li className="sidebar_link">
-            <NavLink activeClassName="active" to="/dashboard/profile">
+            <NavLink activeClassName="active" to={`${url}/my-profile`}>
               <div className="sidebar_icon_div">
                 <i className="fas fa-user"></i>
               </div>
@@ -22,42 +36,10 @@ const Sidebar = () => {
           {isAdmin ? (
             <>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/my-order">
-                  <div className="sidebar_icon_div">
-                    <i className="fas fa-indent"></i>
-                  </div>
-                  My Order
-                </NavLink>
-              </li>
-              <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/my-order">
-                  <div className="sidebar_icon_div">
-                    <i className="fas fa-shopping-cart"></i>
-                  </div>
-                  Pay Now
-                </NavLink>
-              </li>
-              <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/booking-list">
-                  <div className="sidebar_icon_div">
-                    <i className="fas fa-file-alt"></i>
-                  </div>
-                  Review
-                </NavLink>
-              </li>
-            </>
-          ) : (
-            <>
-              <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/my-order">
-                  <div className="sidebar_icon_div">
-                    <i className="fas fa-list-alt"></i>
-                  </div>
-                  My Order
-                </NavLink>
-              </li>
-              <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/my-order">
+                <NavLink
+                  activeClassName="active"
+                  to={`${url}/manage-all-orders`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-list-alt"></i>
                   </div>
@@ -65,38 +47,65 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/booking-list">
+                <NavLink activeClassName="active" to={`${url}/add-a-product`}>
                   <div className="sidebar_icon_div">
-                    <i className="fas fa-indent"></i>
+                    <i className="fas fa-cart-plus"></i>
                   </div>
                   Add A Product
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/booking-list">
+                <NavLink activeClassName="active" to={`${url}/admin`}>
                   <div className="sidebar_icon_div">
-                    <i className="fas fa-indent"></i>
+                    <i className="fas fa-user-shield"></i>
                   </div>
-                  Make Admin
+                  Admin
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to="/dashboard/booking-list">
+                <NavLink activeClassName="active" to={`${url}/manage-products`}>
                   <div className="sidebar_icon_div">
-                    <i className="fas fa-indent"></i>
+                    <i className="fas fa-pen-square"></i>
                   </div>
                   Manage Products
                 </NavLink>
               </li>
             </>
+          ) : (
+            <>
+              <li className="sidebar_link">
+                <NavLink activeClassName="active" to={`${url}/my-order`}>
+                  <div className="sidebar_icon_div">
+                    <i className="fas fa-indent"></i>
+                  </div>
+                  My Order
+                </NavLink>
+              </li>
+              <li className="sidebar_link">
+                <NavLink activeClassName="active" to={`${url}/pay-now`}>
+                  <div className="sidebar_icon_div">
+                    <i className="fas fa-shopping-cart"></i>
+                  </div>
+                  Pay Now
+                </NavLink>
+              </li>
+              <li className="sidebar_link">
+                <NavLink activeClassName="active" to={`${url}/review`}>
+                  <div className="sidebar_icon_div">
+                    <i className="fas fa-file-alt"></i>
+                  </div>
+                  Review
+                </NavLink>
+              </li>
+            </>
           )}
           <li className="sidebar_link">
-            <Link to="/dashboard/add-booking">
+            <button onClick={handleLogOut}>
               <div className="sidebar_icon_div">
                 <i className="fas fa-sign-out-alt"></i>
               </div>
               Log Out
-            </Link>
+            </button>
           </li>
         </ul>
       </div>
