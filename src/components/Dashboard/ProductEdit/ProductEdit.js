@@ -46,7 +46,7 @@ const ProductEdit = () => {
         toast.error(res.data.message);
       }
     });
-  }, []);
+  }, [params.id]);
 
   const handleAddProduct = (e) => {
     const id = params.id;

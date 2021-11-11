@@ -2,10 +2,9 @@ import { Col } from "react-bootstrap";
 import calender from "../../../assests/images/appointment-p-500.png";
 import oil from "../../../assests/images/oil.png";
 import man from "../../../assests/images/manual-transmission.png";
-import { Link } from "react-router-dom";
 
-const Card = ({ data }) => {
-  const { image, title, date, desc } = data;
+const Card = ({ data, handleBookNow }) => {
+  const { image, title, date, desc, price } = data;
   return (
     <Col lg="4" className="mb-4">
       <div className="card_wrapper m-3">
@@ -48,16 +47,21 @@ const Card = ({ data }) => {
             </div>
           </div>
           <p>{desc}</p>
-          <Link
-            to="/"
-            className="btn_round"
-            style={{
-              minHeight: "40px",
-              width: "140px",
-            }}
-          >
-            Book Now
-          </Link>
+          <div className="d-flex  align-items-center">
+            <button
+              onClick={() => handleBookNow(data)}
+              className="btn_round"
+              style={{
+                minHeight: "40px",
+                width: "140px",
+              }}
+            >
+              Book Now
+            </button>
+            <h5 style={{ marginBottom: 0, marginLeft: "20px" }}>
+              Price {"$" + price}
+            </h5>
+          </div>
         </div>
       </div>
     </Col>

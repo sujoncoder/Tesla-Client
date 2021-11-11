@@ -2,7 +2,7 @@ import { Redirect, Route } from "react-router";
 import useAuth from "../../../hook/useAuth";
 
 const AdminRoute = ({ children, ...rest }) => {
-  const { firebaseContext, setSpinner } = useAuth();
+  const { firebaseContext } = useAuth();
   const { user, isLoad, isAdmin } = firebaseContext;
 
   if (isLoad) {

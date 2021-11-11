@@ -1,12 +1,10 @@
 import "./Profile.css";
 import swal from "sweetalert";
-import { useHistory } from "react-router-dom";
 import useAuth from "../../../hook/useAuth";
 
 const Profile = () => {
-  const { firebaseContext, setLoading } = useAuth();
+  const { firebaseContext } = useAuth();
   const { user, logOut } = firebaseContext;
-  const history = useHistory();
   const handleLogOut = () => {
     swal({
       title: "Are you sure?",
@@ -22,11 +20,6 @@ const Profile = () => {
         });
       }
     });
-  };
-
-  const handleBackToHome = () => {
-    setLoading(true);
-    history.push("/");
   };
 
   return (

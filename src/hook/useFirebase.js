@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import initializationfirebase from "../firebase/firebase.init";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import useAuth from "./useAuth";
 
 initializationfirebase();
 

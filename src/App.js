@@ -27,7 +27,7 @@ function App() {
                   dx="0"
                   dy="0"
                   stdDeviation="1.5"
-                  flood-color="#fc6767"
+                  floodColor="#fc6767"
                 />
               </filter>
             </defs>
@@ -47,7 +47,7 @@ function App() {
           </svg>
         </div>
       </div>
-      <Toaster position="bottom-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <Switch>
         <Route exact path="/">
           <Home></Home>

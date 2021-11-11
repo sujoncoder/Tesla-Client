@@ -1,9 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import swal from "sweetalert";
-import useAuth from "../../../hook/useAuth";
 // import dashboard from "../../../assests/images/undraw_data_trends_re_2cdy.svg";
 import "./Admin.css";
 

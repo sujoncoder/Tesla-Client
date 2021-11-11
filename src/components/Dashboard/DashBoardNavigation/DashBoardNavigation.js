@@ -13,7 +13,7 @@ import "./DashBoardNavigation.css";
 
 const DashBoardContent = () => {
   const { navToggle } = useAuth();
-  let { path, url } = useRouteMatch();
+  let { path } = useRouteMatch();
   return (
     <div
       className={navToggle ? "dashboard_content active" : "dashboard_content"}

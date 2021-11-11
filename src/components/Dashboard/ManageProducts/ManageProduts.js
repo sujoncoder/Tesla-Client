@@ -55,43 +55,81 @@ const ManageProduts = () => {
   return (
     <Container>
       <h2 className="text-center my-4">Manage Products</h2>
-      <div className="table_wrapper my-4">
-        <table>
-          <thead>
-            <tr>
-              <th>Car</th>
-              <th>Amount</th>
-              <th>Details</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {cars.map((car) => (
-              <tr key={car._id + "sodsfsfs"}>
-                <td>{car.title}</td>
-                <td className="amount">{car.price}</td>
-                <td>
-                  <Link to="/">View</Link>
-                </td>
-                <td>
-                  <button
-                    className="edit_btn"
-                    onClick={() => handleProductEdit(car._id)}
-                  >
-                    edit
-                  </button>
-                  <button
-                    className="delete_btn"
-                    onClick={() => handleProductDelete(car._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
+      {cars.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div className="spinner_wrapper">
+            <svg viewBox="0 0 100 100">
+              <defs>
+                <filter id="shadow">
+                  <feDropShadow
+                    dx="0"
+                    dy="0"
+                    stdDeviation="1.5"
+                    floodColor="#fc6767"
+                  />
+                </filter>
+              </defs>
+              <circle
+                id="spinner"
+                style={{
+                  fill: "transparent",
+                  stroke: "var(--main-color)",
+                  strokeWidth: "7px",
+                  strokeLinecap: "round",
+                  filter: "url(#shadow)",
+                }}
+                cx="50"
+                cy="50"
+                r="45"
+              />
+            </svg>
+          </div>
+        </div>
+      ) : (
+        <div className="table_wrapper my-4">
+          <table>
+            <thead>
+              <tr>
+                <th>Car</th>
+                <th>Amount</th>
+                <th>Details</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {cars.map((car) => (
+                <tr key={car._id + "sodsfsfs"}>
+                  <td>{car.title}</td>
+                  <td className="amount">{car.price}</td>
+                  <td>
+                    <Link to="/">View</Link>
+                  </td>
+                  <td>
+                    <button
+                      className="edit_btn"
+                      onClick={() => handleProductEdit(car._id)}
+                    >
+                      edit
+                    </button>
+                    <button
+                      className="delete_btn"
+                      onClick={() => handleProductDelete(car._id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </Container>
   );
 };

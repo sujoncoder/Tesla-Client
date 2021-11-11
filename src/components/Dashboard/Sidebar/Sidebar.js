@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { NavLink, Link, useRouteMatch } from "react-router-dom";
 import useAuth from "../../../hook/useAuth";
 import { toast } from "react-hot-toast";
@@ -6,7 +6,7 @@ import "./Sidebar.css";
 import axios from "axios";
 
 const Sidebar = () => {
-  let { path, url } = useRouteMatch();
+  let { url } = useRouteMatch();
   const { firebaseContext } = useAuth();
   const { logOut, isAdmin } = firebaseContext;
 
