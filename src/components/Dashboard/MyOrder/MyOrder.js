@@ -15,7 +15,7 @@ const MyOrder = () => {
     axios.get(url).then((res) => {
       setCars(res.data);
     });
-  }, []);
+  }, [user.email]);
 
   const handleOrderDelete = (id) => {
     const url = `http://localhost:5000/orders/${id}`;

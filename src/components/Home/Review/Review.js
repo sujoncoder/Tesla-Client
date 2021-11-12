@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react/swiper-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "swiper/swiper-bundle.min.css";
 import "swiper/swiper.min.css";
 
@@ -7,12 +7,19 @@ import SwiperCore, { Pagination } from "swiper";
 import Rating from "react-rating";
 import "./Review.css";
 import { Container } from "react-bootstrap";
+import axios from "axios";
 
 // install Swiper modules
 SwiperCore.use([Pagination]);
 
 const Review = () => {
   const [review, setReview] = useState(3);
+  const [reviewData, setReviewData] = useState([]);
+
+  useEffect(() => {
+    const url = `http://localhost:5000/review`;
+    axios.get(url).then((res) => setReviewData(res.data));
+  }, [reviewData]);
 
   const handleReview = () => {
     const width = window.innerWidth;
@@ -45,90 +52,23 @@ const Review = () => {
           color: "#fff",
         }}
       >
-        <SwiperSlide>
-          <div className="review_card">
-            <img
-              src="https://pinax-ng.envytheme.com/assets/img/client2.jpg"
-              alt=""
-            />
-            <Rating
-              emptySymbol="fa fa-star-o fa-2x"
-              fullSymbol="fa fa-star fa-2x"
-              fractions={2}
-              initialRating="4"
-              readonly
-              className="rating"
-            />
-            <p className="text-center">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, voluptates?
-            </p>
-            <h5>Sohel Rana</h5>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="review_card">
-            <img
-              src="https://pinax-ng.envytheme.com/assets/img/client2.jpg"
-              alt=""
-            />
-            <Rating
-              emptySymbol="fa fa-star-o fa-2x"
-              fullSymbol="fa fa-star fa-2x"
-              fractions={2}
-              initialRating="4"
-              readonly
-              className="rating"
-            />
-            <p className="text-center">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, voluptates?
-            </p>
-            <h5>Sohel Rana</h5>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="review_card">
-            <img
-              src="https://pinax-ng.envytheme.com/assets/img/client2.jpg"
-              alt=""
-            />
-            <Rating
-              emptySymbol="fa fa-star-o fa-2x"
-              fullSymbol="fa fa-star fa-2x"
-              fractions={2}
-              initialRating="4"
-              readonly
-              className="rating"
-            />
-            <p className="text-center">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, voluptates?
-            </p>
-            <h5>Sohel Rana</h5>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="review_card">
-            <img
-              src="https://pinax-ng.envytheme.com/assets/img/client2.jpg"
-              alt=""
-            />
-            <Rating
-              emptySymbol="fa fa-star-o fa-2x"
-              fullSymbol="fa fa-star fa-2x"
-              fractions={2}
-              initialRating="4"
-              readonly
-              className="rating"
-            />
-            <p className="text-center">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Reprehenderit, voluptates?
-            </p>
-            <h5>Sohel Rana</h5>
-          </div>
-        </SwiperSlide>
+        {reviewData.map((item) => (
+          <SwiperSlide key={item._id}>
+            <div className="review_card">
+              <img src={item.user?.photoURL} alt="" />
+              <Rating
+                emptySymbol="fa fa-star-o fa-2x"
+                fullSymbol="fa fa-star fa-2x"
+                fractions={2}
+                initialRating={item.rating}
+                readonly
+                className="rating"
+              />
+              <p className="text-center">{item.reviewMessage}</p>
+              <h5>{item.user?.displayName}</h5>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </Container>
   );

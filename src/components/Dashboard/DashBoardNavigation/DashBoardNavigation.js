@@ -41,7 +41,13 @@ const DashBoardContent = () => {
           <MyOrder />
         </Route>
         <Route path={`${path}/pay-now`}>
-          <h4>Payment system coming soon.</h4>
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <h3>Payment system coming soon.</h3>
+          </div>
         </Route>
         <Route path={`${path}/review`}>
           <Review />

@@ -60,6 +60,10 @@ body {
   background-color: #fff;
 }
 
+.fa.fa-star.fa-2x {
+  color: var(--main-color);
+}
+
 /* spinner */
 .spinner_container {
   display: flex;
