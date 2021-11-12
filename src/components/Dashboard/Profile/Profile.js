@@ -1,24 +1,13 @@
 import "./Profile.css";
-import swal from "sweetalert";
 import useAuth from "../../../hook/useAuth";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const { firebaseContext } = useAuth();
   const { user, logOut } = firebaseContext;
   const handleLogOut = () => {
-    swal({
-      title: "Are you sure?",
-      text: "Once logged out you will not be able to access all the services on this website",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((logout) => {
-      if (logout) {
-        logOut();
-        swal("Successfully Log Out", {
-          icon: "success",
-        });
-      }
+    toast("Edit profile feature coming soon!", {
+      icon: <i class="fas fa-info-circle"></i>,
     });
   };
 

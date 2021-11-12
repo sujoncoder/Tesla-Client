@@ -11,7 +11,7 @@ const Sidebar = () => {
   const { logOut, isAdmin } = firebaseContext;
 
   useEffect(() => {
-    const url = "http://localhost:5000/users";
+    const url = `${process.env.REACT_APP_REST_API}users`;
     axios.get(url);
   }, []);
 

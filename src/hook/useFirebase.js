@@ -179,7 +179,7 @@ const useFirebase = () => {
 
   useEffect(() => {
     setIsLoad(true);
-    const url = `http://localhost:5000/users/${user.email}`;
+    const url = `${process.env.REACT_APP_REST_API}users/${user.email}`;
     axios.get(url).then((res) => {
       setIsAdmin(res.data?.admin);
       setIsLoad(false);

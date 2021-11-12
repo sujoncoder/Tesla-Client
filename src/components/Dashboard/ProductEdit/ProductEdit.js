@@ -38,7 +38,7 @@ const ProductEdit = () => {
 
   useEffect(() => {
     const id = params.id;
-    const url = `http://localhost:5000/cars/${id}`;
+    const url = `${process.env.REACT_APP_REST_API}cars/${id}`;
     axios.get(url).then((res) => {
       if (res.data._id) {
         setCarData(res.data);
@@ -50,7 +50,7 @@ const ProductEdit = () => {
 
   const handleAddProduct = (e) => {
     const id = params.id;
-    const url = `http://localhost:5000/cars/${id}`;
+    const url = `${process.env.REACT_APP_REST_API}cars/${id}`;
     axios.put(url, carData).then((res) => {
       if (res.data.acknowledged) {
         toast.success("Product Edit Successfully!");

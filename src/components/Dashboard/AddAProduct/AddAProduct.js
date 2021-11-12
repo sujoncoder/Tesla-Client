@@ -34,7 +34,7 @@ const AddAProduct = () => {
   };
 
   const handleAddProduct = (e) => {
-    const url = `http://localhost:5000/cars`;
+    const url = `${process.env.REACT_APP_REST_API}cars`;
     axios.post(url, carData).then((res) => {
       if (res.data.acknowledged) {
         toast.success("Successfully Car Added!");

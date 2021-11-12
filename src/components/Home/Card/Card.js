@@ -6,7 +6,7 @@ import man from "../../../assests/images/manual-transmission.png";
 const Card = ({ data, handleBookNow }) => {
   const { image, title, date, desc, price } = data;
   return (
-    <Col lg="4" className="mb-4">
+    <Col lg="4" className={data?.btnHide ? "col-lg-6" : "mb-4"}>
       <div className="card_wrapper m-3">
         <img className="img-fluid" src={image} alt="" />
         <div className="card_content my-4">
@@ -48,19 +48,26 @@ const Card = ({ data, handleBookNow }) => {
           </div>
           <p>{desc}</p>
           <div className="d-flex  align-items-center">
-            <button
-              onClick={() => handleBookNow(data)}
-              className="btn_round"
-              style={{
-                minHeight: "40px",
-                width: "140px",
-              }}
-            >
-              Book Now
-            </button>
-            <h5 style={{ marginBottom: 0, marginLeft: "20px" }}>
-              Price {"$" + price}
-            </h5>
+            {!data?.btnHide && (
+              <button
+                onClick={() => handleBookNow(data)}
+                className="btn_round"
+                style={{
+                  minHeight: "40px",
+                  width: "140px",
+                }}
+              >
+                Book Now
+              </button>
+            )}
+
+            {!data?.btnHide ? (
+              <h5 style={{ marginBottom: 0, marginLeft: "20px" }}>
+                Price {"$" + price}
+              </h5>
+            ) : (
+              <h5 style={{ marginBottom: 0 }}>Price {"$" + price}</h5>
+            )}
           </div>
         </div>
       </div>

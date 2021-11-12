@@ -3,9 +3,11 @@ import useAuth from "../../../hook/useAuth";
 import AdminRoute from "../../Login/AdminRoute/AdminRoute";
 import AddAProduct from "../AddAProduct/AddAProduct";
 import Admin from "../Admin/Admin";
+import DisplayProduct from "../DisplayProduct/DisplayProduct";
 import ManageAllOrder from "../ManageAllOrder/ManageAllOrder";
 import ManageProduts from "../ManageProducts/ManageProduts";
 import MyOrder from "../MyOrder/MyOrder";
+import ProductDetails from "../ProductDetails/ProductDetails";
 import ProductEdit from "../ProductEdit/ProductEdit";
 import Profile from "../Profile/Profile";
 import Review from "../Review/Review";
@@ -37,6 +39,12 @@ const DashBoardContent = () => {
         <AdminRoute path={`${path}/manage-products`}>
           <ManageProduts />
         </AdminRoute>
+        <AdminRoute path={`${path}/display-product/:id`}>
+          <DisplayProduct />
+        </AdminRoute>
+        <Route path={`${path}/product-details/:id`}>
+          <ProductDetails />
+        </Route>
         <Route path={`${path}/my-order`}>
           <MyOrder />
         </Route>
@@ -45,6 +53,7 @@ const DashBoardContent = () => {
             style={{
               textAlign: "center",
             }}
+            className="my-4"
           >
             <h3>Payment system coming soon.</h3>
           </div>

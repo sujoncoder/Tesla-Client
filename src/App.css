@@ -64,6 +64,15 @@ body {
   color: var(--main-color);
 }
 
+.img-fuild {
+  width: 100%;
+}
+
+.fas.fa-info-circle {
+  font-size: 20px;
+  color: #00b6d2;
+}
+
 /* spinner */
 .spinner_container {
   display: flex;

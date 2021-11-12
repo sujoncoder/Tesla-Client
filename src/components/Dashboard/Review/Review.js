@@ -12,7 +12,7 @@ const Review = () => {
   const { user } = firebaseContext;
 
   useEffect(() => {
-    const url = `http://localhost:5000/review/${user.email}`;
+    const url = `${process.env.REACT_APP_REST_API}review/${user.email}`;
     axios.get(url).then((res) => {
       const data = res.data;
       setRating(data?.rating);
@@ -23,7 +23,7 @@ const Review = () => {
   const handleReview = (e) => {
     if (rating > 0) {
       if (reviewMessage.length >= 20) {
-        const url = `http://localhost:5000/review`;
+        const url = `${process.env.REACT_APP_REST_API}review`;
         axios
           .put(url, {
             rating,

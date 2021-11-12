@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import toast from "react-hot-toast";
 import swal from "sweetalert";
 // import dashboard from "../../../assests/images/undraw_data_trends_re_2cdy.svg";
 import "./Admin.css";
@@ -11,14 +12,14 @@ const Admin = () => {
   const [message, setMessage] = useState({});
 
   useEffect(() => {
-    const url = "http://localhost:5000/users";
+    const url = `${process.env.REACT_APP_REST_API}users`;
     axios.get(url, { email: userInput }).then((res) => {
       setAdminUser(res.data);
     });
   }, [userInput, message]);
 
   const handleAddAdmin = (email) => {
-    const url = `http://localhost:5000/users/admin/${email}`;
+    const url = `${process.env.REACT_APP_REST_API}users/admin/${email}`;
     axios.put(url).then((res) => {
       setMessage(res.data);
       if (res.data.acknowledged) {
@@ -33,15 +34,29 @@ const Admin = () => {
   };
 
   const handleAdminDelete = (email) => {
-    const url = `http://localhost:5000/users/admin/${email}`;
-    axios.delete(url).then((res) => {
-      const data = res.data;
-      if (data.acknowledged) {
-        setMessage(data);
-        setUserInput("");
-        swal("Good job!", "Admin Remove Succesfully!", "success");
+    const url = `${process.env.REACT_APP_REST_API}users/admin/${email}`;
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this imaginary file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        axios.delete(url).then((res) => {
+          const data = res.data;
+          if (data.acknowledged) {
+            setMessage(data);
+            setUserInput("");
+            toast.success("Admin Remove Successfully!");
+          } else {
+            swal("Opps!", data.message, "error");
+          }
+        });
       } else {
-        swal("Opps!", data.message, "error");
+        toast("Admin Delete Cancel!", {
+          icon: <i class="fas fa-info-circle"></i>,
+        });
       }
     });
   };

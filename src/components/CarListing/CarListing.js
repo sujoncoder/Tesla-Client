@@ -14,14 +14,14 @@ const CarListing = () => {
   const { firebaseContext } = useAuth();
   const { user } = firebaseContext;
   useEffect(() => {
-    axios.get("http://localhost:5000/cars").then((res) => {
+    axios.get(`${process.env.REACT_APP_REST_API}cars`).then((res) => {
       setCars(res.data);
     });
   }, []);
   const handleBookNow = (car) => {
     if (user.email) {
-      const url = `http://localhost:5000/orders?email=${user.email}`;
-      axios.post(url, car).then((res) => {
+      const url = `${process.env.REACT_APP_REST_API}orders?email=${user.email}`;
+      axios.post(url, { status: "pending", ...car }).then((res) => {
         const data = res.data;
         if (data?.acknowledged) {
           toast.success("Successfully Car Added!");

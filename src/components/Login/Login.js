@@ -33,7 +33,7 @@ const SignUp = ({ signUp }) => {
   };
 
   const handleUser = ({ email, name }) => {
-    const url = "http://localhost:5000/users";
+    const url = `${process.env.REACT_APP_REST_API}users`;
     axios
       .put(url, {
         email: email,
