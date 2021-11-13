@@ -12,14 +12,14 @@ const Admin = () => {
   const [message, setMessage] = useState({});
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}users`;
+    const url = `/users`;
     axios.get(url, { email: userInput }).then((res) => {
       setAdminUser(res.data);
     });
   }, [userInput, message]);
 
   const handleAddAdmin = (email) => {
-    const url = `${process.env.REACT_APP_REST_API}users/admin/${email}`;
+    const url = `/users/admin/${email}`;
     axios.put(url).then((res) => {
       setMessage(res.data);
       if (res.data.acknowledged) {
@@ -29,12 +29,11 @@ const Admin = () => {
       } else {
         swal("Opps!", "User Not Found!", "error");
       }
-      console.log(res.data);
     });
   };
 
   const handleAdminDelete = (email) => {
-    const url = `${process.env.REACT_APP_REST_API}users/admin/${email}`;
+    const url = `/users/admin/${email}`;
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -55,7 +54,7 @@ const Admin = () => {
         });
       } else {
         toast("Admin Delete Cancel!", {
-          icon: <i class="fas fa-info-circle"></i>,
+          icon: <i className="fas fa-info-circle"></i>,
         });
       }
     });

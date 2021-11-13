@@ -15,14 +15,14 @@ const BuyAndSell = () => {
   const history = useHistory();
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_REST_API}carshome`).then((res) => {
+    axios.get(`/carshome`).then((res) => {
       setCars(res.data);
     });
   }, []);
 
   const handleBookNow = (car) => {
     if (user.email) {
-      const url = `${process.env.REACT_APP_REST_API}orders?email=${user.email}`;
+      const url = `/orders?email=${user.email}`;
       axios.post(url, { status: "pending", ...car }).then((res) => {
         const data = res.data;
         if (data?.acknowledged) {
@@ -34,7 +34,7 @@ const BuyAndSell = () => {
     }
   };
   return (
-    <div className="buy_and_sell py-5">
+    <div className="buy_and_sell py-5" id="buy-and-sell">
       <Container>
         <div className="text-center">
           <p style={{ color: "#ddd" }} className="fw-bold">

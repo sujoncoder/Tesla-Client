@@ -9,7 +9,7 @@ import "./ManageAllOrder.css";
 const ManageAllOrder = () => {
   const [orders, setOrders] = useState(false);
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}orders`;
+    const url = `/orders`;
     axios.get(url).then((res) => {
       setOrders(res.data);
     });
@@ -24,11 +24,10 @@ const ManageAllOrder = () => {
       modifiredOrders.push(order);
     });
     setOrders(modifiredOrders);
-    console.log(orders);
 
     const modifiredStatus = { id, status };
 
-    const url = `${process.env.REACT_APP_REST_API}updateOrderStatus`;
+    const url = `/updateOrderStatus`;
     axios.patch(url, modifiredStatus).then((res) => {
       const data = res.data;
       if (data.acknowledged) {
@@ -40,7 +39,7 @@ const ManageAllOrder = () => {
   };
 
   const handleOrderDelete = (id) => {
-    const url = `${process.env.REACT_APP_REST_API}orders/${id}`;
+    const url = `/orders/${id}`;
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -61,7 +60,7 @@ const ManageAllOrder = () => {
           });
       } else {
         toast("Order Delete Cancel!", {
-          icon: <i class="fas fa-info-circle"></i>,
+          icon: <i className="fas fa-info-circle"></i>,
         });
       }
     });

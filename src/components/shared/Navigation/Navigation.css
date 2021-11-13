@@ -165,6 +165,10 @@
   display: none;
 }
 
+.nav_items.mobile_menu {
+  display: none;
+}
+
 @media screen and (max-width: 1200px) {
 
   .connect .email,
@@ -177,6 +181,11 @@
   .navbar_container {
     height: 70px;
   }
+
+  .nav_items.mobile_menu {
+    display: block;
+  }
+
 
   .nav_menu {
     flex-direction: column;
@@ -227,5 +236,11 @@
 
   .connect {
     display: none;
+  }
+
+  .nav_link.active,
+  .link_active {
+    color: var(--dark-color) !important;
+    font-weight: 800;
   }
 }

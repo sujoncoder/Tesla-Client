@@ -109,4 +109,18 @@
   .border_right {
     border-right: none;
   }
+
+  .form>form {
+    margin: 0;
+    padding: 30px 20px;
+  }
+
+  .form_item.sign .input_field {
+    font-size: 14px;
+    padding: 14px 5px;
+  }
+
+  .flex_column_reverse {
+    flex-direction: column-reverse !important;
+  }
 }

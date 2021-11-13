@@ -10,7 +10,7 @@ const ManageProduts = () => {
   const [cars, setCars] = useState([]);
   const history = useHistory();
 
-  const url = `${process.env.REACT_APP_REST_API}cars`;
+  const url = `/cars`;
   useEffect(() => {
     axios.get(url).then((res) => {
       setCars(res.data);
@@ -18,7 +18,7 @@ const ManageProduts = () => {
   }, [url]);
 
   const handleProductDelete = (id) => {
-    const url = `${process.env.REACT_APP_REST_API}cars/${id}`;
+    const url = `/cars/${id}`;
     axios.delete(url).then((res) => {
       const data = res.data;
       if (data.acknowledged) {

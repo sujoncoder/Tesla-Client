@@ -33,15 +33,13 @@ const SignUp = ({ signUp }) => {
   };
 
   const handleUser = ({ email, name }) => {
-    const url = `${process.env.REACT_APP_REST_API}users`;
+    const url = `/users`;
     axios
       .put(url, {
         email: email,
         name: name,
       })
-      .then((res) => {
-        console.log(res.data);
-      });
+      .then((res) => {});
   };
 
   const handleGoogleSignIn = () => {
@@ -73,7 +71,7 @@ const SignUp = ({ signUp }) => {
             <div className="loader"></div>
           </div>
           <div className="form_wrapper">
-            <Row className="mt-5">
+            <Row className="mt-5 flex_column_reverse">
               <Col
                 style={{ flexDirection: "column", alignItems: "" }}
                 className="form_item"

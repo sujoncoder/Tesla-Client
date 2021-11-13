@@ -17,7 +17,7 @@ const Review = () => {
   const [reviewData, setReviewData] = useState([]);
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}review`;
+    const url = `/review`;
     axios.get(url).then((res) => setReviewData(res.data));
   }, [reviewData]);
 

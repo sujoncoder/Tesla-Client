@@ -10,10 +10,16 @@ import AboutUs from "./components/AboutUs/AboutUs";
 import CarListing from "./pages/CarListing";
 import NotFound from "./components/NotFound/NotFound";
 import useAuth from "./hook/useAuth";
+import axios from "axios";
 
 function App() {
   const { firebaseContext } = useAuth();
-  const { isLoading } = firebaseContext;
+  const { isLoading, token } = firebaseContext;
+
+  axios.defaults.baseURL = "https://racycar.herokuapp.com";
+  // axios.defaults.baseURL = "http://localhost:5000";
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
   return (
     <>
       <div

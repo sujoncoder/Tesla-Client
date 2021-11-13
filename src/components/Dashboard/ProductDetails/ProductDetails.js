@@ -11,7 +11,7 @@ const ProductDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}order/${id}`;
+    const url = `/order/${id}`;
     axios.get(url).then((res) => {
       setProduct(res.data);
     });

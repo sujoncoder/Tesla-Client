@@ -14,11 +14,16 @@ import Review from "../Review/Review";
 import "./DashBoardNavigation.css";
 
 const DashBoardContent = () => {
-  const { navToggle } = useAuth();
+  const { navToggle, mobileNav } = useAuth();
+
   let { path } = useRouteMatch();
   return (
     <div
-      className={navToggle ? "dashboard_content active" : "dashboard_content"}
+      className={
+        navToggle || !mobileNav
+          ? "dashboard_content active"
+          : "dashboard_content"
+      }
     >
       <Switch>
         <Route exact path={path}>

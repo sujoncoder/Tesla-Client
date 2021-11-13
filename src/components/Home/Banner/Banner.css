@@ -1,0 +1,78 @@
+.banner_container {
+  background: url(../../../assests/images/hero-car.jpg);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  color: #fff;
+}
+
+.banner_header {
+  display: flex;
+  height: 100%;
+}
+
+.banner_container h1 {
+  font-size: clamp(1.5rem, 6vw, 3rem);
+  color: #e6e6e6;
+  font-weight: 700;
+  text-align: center;
+}
+
+.play_btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--main-color);
+  text-decoration: none;
+  border: none;
+  outline: none;
+}
+
+.play_btn .fas {
+  font-size: 36px;
+  color: #fff;
+  margin-left: 6px;
+}
+
+.video {
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.video.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@media screen and (max-width: 778px) {
+  .banner_btn_wrapper>a {
+    font-size: 16px !important;
+    margin: 10px !important;
+  }
+
+  .footer_details {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .footer_details>.nav_logo,
+  .footer_details>p,
+  .social_links {
+    margin: 15px 0 !important;
+  }
+}

@@ -4,10 +4,10 @@ import toast from "react-hot-toast";
 
 const Profile = () => {
   const { firebaseContext } = useAuth();
-  const { user, logOut } = firebaseContext;
+  const { user } = firebaseContext;
   const handleLogOut = () => {
     toast("Edit profile feature coming soon!", {
-      icon: <i class="fas fa-info-circle"></i>,
+      icon: <i className="fas fa-info-circle"></i>,
     });
   };
 

@@ -7,11 +7,11 @@ import axios from "axios";
 
 const Sidebar = () => {
   let { url } = useRouteMatch();
-  const { firebaseContext } = useAuth();
+  const { firebaseContext, setNavToggle, navToggle, mobileNav } = useAuth();
   const { logOut, isAdmin } = firebaseContext;
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}users`;
+    const url = `/users`;
     axios.get(url);
   }, []);
 
@@ -19,6 +19,11 @@ const Sidebar = () => {
     const hanldefun = () => {};
     toast.success("Successfully Log Out!");
     logOut(hanldefun);
+  };
+  const handleSideNav = () => {
+    if (!mobileNav) {
+      setNavToggle(!navToggle);
+    }
   };
 
   return (
@@ -31,7 +36,11 @@ const Sidebar = () => {
         </div>
         <ul className="sidebar_menu my-4">
           <li className="sidebar_link">
-            <NavLink activeClassName="active" to={`${url}/my-profile`}>
+            <NavLink
+              onClick={handleSideNav}
+              activeClassName="active"
+              to={`${url}/my-profile`}
+            >
               <div className="sidebar_icon_div">
                 <i className="fas fa-user"></i>
               </div>
@@ -42,6 +51,7 @@ const Sidebar = () => {
             <>
               <li className="sidebar_link">
                 <NavLink
+                  onClick={handleSideNav}
                   activeClassName="active"
                   to={`${url}/manage-all-orders`}
                 >
@@ -52,7 +62,11 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/add-a-product`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/add-a-product`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-cart-plus"></i>
                   </div>
@@ -60,7 +74,11 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/admin`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/admin`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-user-shield"></i>
                   </div>
@@ -68,7 +86,11 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/manage-products`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/manage-products`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-pen-square"></i>
                   </div>
@@ -79,7 +101,11 @@ const Sidebar = () => {
           ) : (
             <>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/my-order`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/my-order`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-indent"></i>
                   </div>
@@ -87,7 +113,11 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/pay-now`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/pay-now`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-shopping-cart"></i>
                   </div>
@@ -95,7 +125,11 @@ const Sidebar = () => {
                 </NavLink>
               </li>
               <li className="sidebar_link">
-                <NavLink activeClassName="active" to={`${url}/review`}>
+                <NavLink
+                  onClick={handleSideNav}
+                  activeClassName="active"
+                  to={`${url}/review`}
+                >
                   <div className="sidebar_icon_div">
                     <i className="fas fa-file-alt"></i>
                   </div>

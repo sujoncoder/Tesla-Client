@@ -5,6 +5,10 @@
   --dark-color-light: #222222;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -44,7 +48,7 @@ body {
 
 .btn_round_outline {
   background-color: transparent;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
 }
 
 .btn_round:hover {
@@ -64,8 +68,14 @@ body {
   color: var(--main-color);
 }
 
-.img-fuild {
+.img-fluid {
+  max-width: 100%;
+  height: auto;
   width: 100%;
+}
+
+.card_item>.img-fluid {
+  width: auto;
 }
 
 .fas.fa-info-circle {

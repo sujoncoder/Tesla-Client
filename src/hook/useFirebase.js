@@ -7,11 +7,11 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
+  getIdToken,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializationfirebase from "../firebase/firebase.init";
 import { toast } from "react-hot-toast";
-import axios from "axios";
 
 initializationfirebase();
 
@@ -24,6 +24,7 @@ const useFirebase = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoad, setIsLoad] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [token, setToken] = useState("");
 
   const auth = getAuth();
 
@@ -87,7 +88,6 @@ const useFirebase = () => {
       });
   };
   const signInWithEmailAndPass = (handleCallBack, handleUser) => {
-    console.log(userRegistration);
     setIsLoading(true);
     signInWithEmailAndPassword(
       auth,
@@ -95,7 +95,6 @@ const useFirebase = () => {
       userRegistration.password
     )
       .then((userCredential) => {
-        console.log("Hello");
         const user = userCredential.user;
         setUser(user);
         clearInputForm();
@@ -158,6 +157,9 @@ const useFirebase = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        getIdToken(user).then((idToken) => {
+          setToken(idToken);
+        });
       } else {
         setUser({});
       }
@@ -179,12 +181,14 @@ const useFirebase = () => {
 
   useEffect(() => {
     setIsLoad(true);
-    const url = `${process.env.REACT_APP_REST_API}users/${user.email}`;
-    axios.get(url).then((res) => {
-      setIsAdmin(res.data?.admin);
-      setIsLoad(false);
-    });
-  }, [user.email]);
+    const url = `https://racycar.herokuapp.com/users/${user.email}`;
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsAdmin(data.admin);
+        setIsLoad(false);
+      });
+  }, [user]);
 
   return {
     error,
@@ -192,6 +196,7 @@ const useFirebase = () => {
     isAdmin,
     logOut,
     isLoad,
+    token,
     isLoading,
     signInWithGoogle,
     signInWithGithub,

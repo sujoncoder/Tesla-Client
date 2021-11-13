@@ -12,14 +12,14 @@ const MyOrder = () => {
   const { user } = firebaseContext;
 
   useEffect(() => {
-    const url = `${process.env.REACT_APP_REST_API}orders/${user.email}`;
+    const url = `/orders/${user.email}`;
     axios.get(url).then((res) => {
       setCars(res.data);
     });
   }, [user.email]);
 
   const handleOrderDelete = (id) => {
-    const url = `${process.env.REACT_APP_REST_API}orders/${id}`;
+    const url = `/orders/${id}`;
     swal({
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -40,7 +40,7 @@ const MyOrder = () => {
         });
       } else {
         toast("Delete Cancel!", {
-          icon: <i class="fas fa-info-circle"></i>,
+          icon: <i className="fas fa-info-circle"></i>,
         });
       }
     });

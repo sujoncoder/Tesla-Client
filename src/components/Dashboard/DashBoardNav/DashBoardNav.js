@@ -6,7 +6,7 @@ import "./DashBoardNav.css";
 
 const DashBoardNav = () => {
   const [toggleBtn, setToggleBtn] = useState(false);
-  const { firebaseContext, navToggle, setNavToggle } = useAuth();
+  const { firebaseContext, navToggle, setNavToggle, mobileNav } = useAuth();
   const { user, logOut } = firebaseContext;
 
   const handleLogOut = () => {
@@ -19,7 +19,11 @@ const DashBoardNav = () => {
   };
 
   return (
-    <div className={navToggle ? "dashboard_nav active" : "dashboard_nav"}>
+    <div
+      className={
+        navToggle || !mobileNav ? "dashboard_nav active" : "dashboard_nav"
+      }
+    >
       <div onClick={() => setNavToggle(!navToggle)} className="humberger_icon">
         {navToggle ? (
           <i className="fas fa-bars"></i>

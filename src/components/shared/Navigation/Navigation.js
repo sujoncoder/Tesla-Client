@@ -95,6 +95,28 @@ const Navigation = () => {
                 Dashboard
               </NavLink>
             </li>
+            {!user.email ? (
+              <li className="nav_items mobile_menu">
+                <NavLink
+                  activeClassName="active"
+                  className="nav_link dashboard_btn_link"
+                  to="/sign-up"
+                >
+                  Sign Up
+                </NavLink>
+              </li>
+            ) : (
+              <li className="nav_items mobile_menu">
+                <NavLink
+                  activeClassName="actives"
+                  className="nav_link dashboard_btn_link"
+                  onClick={handleLogOut}
+                  to="/"
+                >
+                  Log Out
+                </NavLink>
+              </li>
+            )}
           </ul>
           <div className="connect">
             <NavLink

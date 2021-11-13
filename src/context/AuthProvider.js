@@ -5,9 +5,19 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [navToggle, setNavToggle] = useState(false);
+  const [mobileNav, setMobileNav] = useState(true);
+
   const firebaseContext = useFirebase();
   return (
-    <AuthContext.Provider value={{ firebaseContext, navToggle, setNavToggle }}>
+    <AuthContext.Provider
+      value={{
+        firebaseContext,
+        navToggle,
+        mobileNav,
+        setMobileNav,
+        setNavToggle,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
