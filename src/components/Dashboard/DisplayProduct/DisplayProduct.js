@@ -21,7 +21,14 @@ const DisplayProduct = () => {
       <Row>
         <Card data={{ ...product, btnHide: true }} />
         <Col lg="6">
-          <img className="img-fluid p-2 p-lg-5" src={carPhoto} alt="" />
+          <img
+            className="img-fluid p-2 p-lg-5"
+            style={{
+              height: "auto",
+            }}
+            src={carPhoto}
+            alt=""
+          />
           <button
             onClick={() => history.goBack()}
             className="btn_round mx-auto fs-6"

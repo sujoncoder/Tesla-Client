@@ -51,21 +51,8 @@ const Navigation = () => {
               {!toggleHamburger && <i className="fas fa-times"></i>}
             </div>
             <li className="nav_items">
-              <NavLink
-                activeClassName="active"
-                className="nav_link"
-                to="/about"
-              >
-                About Us
-              </NavLink>
-            </li>
-            <li className="nav_items">
-              <NavLink
-                activeClassName="active"
-                className="nav_link"
-                to="/listing"
-              >
-                Services
+              <NavLink activeClassName="active" className="nav_link" to="/home">
+                Home
               </NavLink>
             </li>
             <li className="nav_items">
@@ -81,7 +68,16 @@ const Navigation = () => {
               <NavLink
                 activeClassName="active"
                 className="nav_link"
-                to="/contact-us"
+                to="/about-us"
+              >
+                About Us
+              </NavLink>
+            </li>
+            <li className="nav_items">
+              <NavLink
+                activeClassName="active"
+                className="nav_link"
+                to="/contact"
               >
                 Contact
               </NavLink>

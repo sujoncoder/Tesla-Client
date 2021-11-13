@@ -6,11 +6,12 @@ import Home from "./pages/Home";
 import { Toaster } from "react-hot-toast";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/Login/PrivateRoute/PrivateRoute";
-import AboutUs from "./components/AboutUs/AboutUs";
 import CarListing from "./pages/CarListing";
 import NotFound from "./components/NotFound/NotFound";
 import useAuth from "./hook/useAuth";
 import axios from "axios";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 function App() {
   const { firebaseContext } = useAuth();
@@ -56,16 +57,19 @@ function App() {
       <Toaster position="top-center" reverseOrder={false} />
       <Switch>
         <Route exact path="/">
-          <Home></Home>
+          <Redirect to="/home" />
         </Route>
-        <Route exact path="/home">
-          <Redirect to="/" />
+        <Route path="/home">
+          <Home></Home>
         </Route>
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>
         <Route path="/about-us">
-          <AboutUs />
+          <About />
+        </Route>
+        <Route path="/contact">
+          <Contact />
         </Route>
         <Route path="/car-listing">
           <CarListing />
