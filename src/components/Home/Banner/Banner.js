@@ -18,14 +18,6 @@ const Banner = () => {
               Make your inner connection and never limit your way to journey
               with our best car
             </h1>
-            <div className="d-flex justify-content-center banner_btn_wrapper">
-              <Link to="/car-listing" className="btn_round fs-5 m-3">
-                Buy Now!
-              </Link>
-              <Link to="/" className="btn_round_outline fs-5 m-3">
-                Learn More
-              </Link>
-            </div>
             <div className="d-flex justify-context-center my-5">
               <button
                 onClick={() => setVideo(!video)}
@@ -33,6 +25,14 @@ const Banner = () => {
               >
                 <i className="fas fa-play"></i>
               </button>
+            </div>
+            <div className="d-flex justify-content-center banner_btn_wrapper mt-5">
+              <Link to="/car-listing" className="btn_round fs-5 m-3">
+                Buy Now!
+              </Link>
+              <Link to="/" className="btn_round_outline fs-5 m-3">
+                Learn More
+              </Link>
             </div>
           </div>
         </div>

@@ -105,19 +105,69 @@ const MyOrder = () => {
                   <th>Amount</th>
                   <th>Details</th>
                   <th>Status</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
                 {cars &&
                   cars.map((car) => (
                     <tr key={car._id + "sodsfs"}>
-                      <td>{car.title}</td>
-                      <td className="amount">{car.price}</td>
-                      <td>
+                      <td
+                        style={{
+                          fontSize: "14px",
+                        }}
+                      >
+                        {car.title}
+                      </td>
+                      <td
+                        style={{
+                          fontSize: "14px",
+                        }}
+                        className="amount"
+                      >
+                        {car.price}
+                      </td>
+                      <td
+                        style={{
+                          fontSize: "14px",
+                        }}
+                      >
                         <Link to={`product-details/${car._id}`}>View</Link>
                       </td>
+                      {car.status === "pending" ? (
+                        <td
+                          style={{
+                            fontSize: "14px",
+                          }}
+                          className="status pending"
+                        >
+                          Pending
+                        </td>
+                      ) : car.status === "on-going" ? (
+                        <td
+                          style={{
+                            fontSize: "14px",
+                          }}
+                          className="status on-going"
+                        >
+                          On Going
+                        </td>
+                      ) : (
+                        <td
+                          style={{
+                            fontSize: "14px",
+                          }}
+                          className="status done"
+                        >
+                          Done
+                        </td>
+                      )}
+
                       <td>
                         <button
+                          style={{
+                            fontSize: "14px",
+                          }}
                           onClick={() => handleOrderDelete(car._id)}
                           className="delete_btn"
                         >
