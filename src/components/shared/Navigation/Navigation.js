@@ -33,7 +33,7 @@ const Navigation = () => {
               }}
             >
               <h3>
-                Racy<span>Car</span>
+                T<span>esla</span>
               </h3>
             </Link>
           </div>

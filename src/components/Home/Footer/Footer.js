@@ -21,7 +21,7 @@ const Footer = () => {
               }}
             >
               <h3>
-                Racy<span>Car</span>
+                T<span>esla</span>
               </h3>
             </Link>
           </div>
@@ -31,30 +31,30 @@ const Footer = () => {
               marginBottom: 0,
             }}
           >
-            ©2021 RacyCar. All rights reserved{" "}
+            ©2021 Tesla. All rights reserved{" "}
             <a
               style={{
                 fontSize: "14px",
                 color: "var(--main-color)",
               }}
-              href="https://github.com/fsmdsohel"
+              href="/homew"
             >
-              Sohel Rana
+              SUJON SHEIKH
             </a>
           </p>
           <div className="social_links">
             <div className="social_link">
-              <a href="https://www.facebook.com/fsmdsohel1">
+              <a href="https://www.facebook.com/">
                 <i className="fab fa-facebook-f"></i>
               </a>
             </div>
             <div className="social_link">
-              <a href="https://github.com/fsmdsohel">
+              <a href="/home">
                 <i className="fab fa-github"></i>
               </a>
             </div>
             <div className="social_link">
-              <a href="https://www.linkedin.com/in/fsmdsohel">
+              <a href="https://www.linkedin.com/in/sujon">
                 <i className="fab fa-linkedin-in"></i>
               </a>
             </div>

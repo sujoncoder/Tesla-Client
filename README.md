@@ -1,10 +1,10 @@
-# RacyCar Niche Product Website
+# Tesla Niche Product Website
 
 [Live website](https://racycar-df941.web.app/)
 
 ## About The Project
 
-- This website is about car company RacyCar.
+- This website is about car company Tesla.
 - In this website user easily can find their desirable car and cars information easily.
 - In this website user easily manage their purchase and chosen car details in the dashboard section.
 - In this website admin can easily manage admin panel work and admin panel section is secure.

@@ -31,7 +31,7 @@ const Sidebar = () => {
       <div>
         <div className="sidebar_logo">
           <h3>
-            Racy<span>Car</span>
+            T<span>esla</span>
           </h3>
         </div>
         <ul className="sidebar_menu my-4">
